@@ -19,11 +19,10 @@ do
   if [ -d ${!count} ]
   then
       echo "Directory ${!count} skipped!"
-      count=`expr $count + 1`
   else
-      shasum ${!count}>>.listofhcfiles
-      count=`expr $count + 1`
+      shasum $in_path/${!count}>>.listofhcfiles
   fi
+  count=`expr $count + 1`
 done
 #cat .listofhcfiles
 #Slicing out hashes from .listofhcfiles
@@ -58,21 +57,24 @@ do
   val=`expr $val + 1`
 done
 #asking user which one to delete
-set &( cat .listofhcnames )
-navl=1
-while [ $nval -le $maxval ]
-do
-  nnval=`expr $nval + $maxval`
-  echo "In Set $nval of duplicate files, which one would you like to \ndelete? Enter 1 or 2 for appropriate choice."
-  echo "1) ${!nval} \n2) ${!nnval}"
-  read delvar
-  if [ $delvar == 1 ]
-  then
-     rm ${!nval} && echo "${!nval} deleted!"
-  elif [ $delvar == 2 ]
-  then
-     rm ${!nnval} && echo "${!nnval} deleted"
-  else
-     echo "ONLY 1 AND 2 ACCEPTED AS INPUT"
-  nval=`expr $nval + 1`
-done
+#set &( cat .listofhcnames )
+#maxhereval=$#
+#navl=1
+#nnval=1
+#while [ $nval -le $maxhereval ]
+#do
+#  nnval=`expr $nval + $maxhereval`
+#  echo "In Set $nval of duplicate files, which one would you like to \ndelete? Enter 1 or 2 for appropriate choice."
+#  echo "1) ${!nval} \n2) ${!nnval}"
+#  read delvar
+#  if [ $delvar == 1 ]
+#  then
+#     rm ${!nval} && echo "${!nval} deleted!"
+#  elif [ $delvar == 2 ]
+#  then
+#     rm ${!nnval} && echo "${!nnval} deleted"
+#  else
+#    echo "ONLY 1 AND 2 ACCEPTED AS INPUT"
+#  fi
+#  nval=`expr $nval + 1`
+#done

@@ -56,6 +56,9 @@ do
   echo $string2>>.listofhcnames
   val=`expr $val + 1`
 done
+echo "Following Files (opposite to each other) are duplicate of each other:"
+cat .listofhcnames
+cat .listofhcnames >> Duplicate_file_list
 #asking user which one to delete
 #set &( cat .listofhcnames )
 #maxhereval=$#
@@ -74,7 +77,7 @@ done
 #  then
 #     rm ${!nnval} && echo "${!nnval} deleted"
 #  else
-#    echo "ONLY 1 AND 2 ACCEPTED AS INPUT"
+#     echo "ONLY 1 AND 2 ACCEPTED AS INPUT"
 #  fi
 #  nval=`expr $nval + 1`
 #done
